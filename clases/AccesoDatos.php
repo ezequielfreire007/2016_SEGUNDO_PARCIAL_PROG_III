@@ -4,10 +4,9 @@ class AccesoDatos
     //Atributos
     private static $_objAccesoDatos;
     private $_objPDO;
-		//IMPLEMENTAR...
+
     private function __construct()
     {
-		//IMPLEMENTAR...
         try {
             $this->_objPDO = new PDO('mysql:host=localhost;dbname=login_pdo;charset=utf8','root','123',array(PDO::ATTR_EMULATE_PREPARES=>false,PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
             $this->_objPDO-exec("SET CHARACTER SET utf8");
@@ -20,21 +19,25 @@ class AccesoDatos
 
     public function RetornarConsulta($sql)
     {
-		//IMPLEMENTAR...
+        return $this->_objPDO->prepare($sql);
     }
 
      public function RetornarUltimoIdInsertado()
     {
-		//IMPLEMENTAR...
+        return $this->_objPDO->lastInsertId();
     }
 
     public static function dameUnObjetoAcceso()
     {
-		//IMPLEMENTAR...
+        if (!isset(self::$_objAccesoDatos)) {
+		    self::$_objAccesoDatos = new AccesoDatos();
+		}
+
+        return self::$_objAccesoDatos;
     }
 
     public function __clone()
     {
- 		//IMPLEMENTAR...
+        trigger_error('La clonacion de este objeto no esta permitida',E_USER_ERROR);
     }
 }
