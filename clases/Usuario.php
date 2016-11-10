@@ -3,13 +3,13 @@ require_once 'AccesoDatos.php';
 
 class Usuario {
 
-    //Atributos
-    private $id;
-    private $nombre;
-    private $email;
-    private $password;
-    private $perfil;
-    private $foto;
+    //--Atributos
+    public $id;
+    public $nombre;
+    public $email;
+    public $password;
+    public $perfil;
+    public $foto;
 
     //--CONSTRUCTOR
     public function __construct($id = NULL) {
@@ -18,8 +18,9 @@ class Usuario {
         }
     }
 
+    //--METODOS DE CLASE
     public static function TraerUsuarioLogueado($obj) {
-		//IMPLEMENTAR...
+		return $this->TraerUnUsuarioPorId($ob->id);
     }
 
     public static function TraerUnUsuarioPorId($id) {
@@ -33,7 +34,15 @@ class Usuario {
     }
 
     public static function Agregar($obj) {
-		//IMPLEMENTAR
+		//Intancio un objeto a acceso a datos
+        $objetoAccesoDatos = AccesoDatos::dameUnObjetoAcceso();
+        //Genero la consulta
+        $consulta = $objetoAccesoDatos->RetornarConsulta("INSERT into usuarios (nombre, email, password, perfil, foto)
+                                                            values('$obj->nombre','$obj->email','$obj->password','$obj->perfil',$obj->foto)");
+        //Executo la consulta
+        $consulta->execute();
+        var_dump($consulta);
+        return $objetoAccesoDatos->RetornarUltimoIdInsertado();
     }
 
     public function ActualizarFoto() {
@@ -75,7 +84,7 @@ class Usuario {
     }
 
     public static function Borrar($id) {
-		//IMPLEMENTAR...
+
     }
 
 
