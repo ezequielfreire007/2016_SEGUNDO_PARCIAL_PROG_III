@@ -23,11 +23,17 @@ class Usuario {
     }
 
     public static function TraerUnUsuarioPorId($id) {
-		//IMPLEMENTAR...
+		//Instancio un objeto a acceso de datos
+        $objetoAccesoDatos = AccesoDatos::dameUnObjetoAcceso();
+        //Genero la consulta
+        $consulta = $objetoAccesoDatos->RetornarConsulta("SELECT * FROM `usuarios` WHERE `id`= $id");
+        //Executo la consulta
+        $consulta->execute();
+        return $consulta->fetchAll(PDO::FETCH_CLASS,"Usuario");
     }
 
     public static function Agregar($obj) {
-		//IMPLEMENTAR...
+		//IMPLEMENTAR
     }
 
     public function ActualizarFoto() {
@@ -42,7 +48,7 @@ class Usuario {
         //Instancio un objeto a acceso a datos
         $objetoAccesoDatos = AccesoDatos::dameUnObjetoAcceso();
         //Genero la consulta
-        $consulta = $objetoAccesoDatos->RetornarConsulta("SELECT * FROM `usuarios` WHERE 1");
+        $consulta = $objetoAccesoDatos->RetornarConsulta("SELECT * FROM `usuarios`");
         //Executo la consulta
         $consulta->execute();
         //Casteo los usuario a una variable y la retorno
@@ -54,17 +60,16 @@ class Usuario {
         //Instancio un objeto a acceso a datos
         $objetoAccesoDatos = AccesoDatos::dameUnObjetoAcceso();
         //Genero la consultao
-        $consulta = $objetoAccesoDatos->RetornarConsulta("SELECT `perfil` FROM `usuarios`");
+        $consulta = $objetoAccesoDatos->RetornarConsulta("SELECT DISTINCT `perfil` FROM `usuarios`");
         //Executo la consulta
         $consulta->execute();
         //Genero un array de los perfiles
         $perfiles = $consulta->fetchAll(PDO::FETCH_OBJ); //CONSULTA
         //retono los primeros 3 perfiles
         $retorno = array();
-        for ($i=0; $i < 3; $i++) {
+        for ($i=0; $i < count($perfiles); $i++) {
             $retorno[$i] = $perfiles[$i]->perfil;
         }
-        //var_dump($retorno);
         //retorno el array de perfiles
         return $retorno;
     }
