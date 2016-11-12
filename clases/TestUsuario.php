@@ -27,5 +27,7 @@
     $miUlitmoUsuario = Usuario::Agregar($usuario);
     var_dump($miUlitmoUsuario);
     /////////////////////////////////////////////////////////////////////
-    
+    echo "Borrar"."<br>";
+    Usuario::Borrar(5);
+    var_dump(Usuario::TraerTodosLosUsuarios());
  ?>
