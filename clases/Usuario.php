@@ -89,7 +89,7 @@ class Usuario {
         //Genero la consulta
         $consulta = $objetoAccesoDatos->RetornarConsulta("DELETE FROM usuarios WHERE id=:id");
         //Vinculo un valor al parametro de sustitucion :id
-        $consulta->bindValue(':id', $id, PDO:PARAM_INT);
+        $consulta->bindValue(':id', $id, PDO::PARAM_INT);
         //Ejecuto la consulta
         $consulta->execute();
         //Devolvemos el numero de filas afectadas por la consulta
