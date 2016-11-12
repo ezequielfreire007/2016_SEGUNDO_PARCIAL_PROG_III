@@ -3,7 +3,7 @@ require_once 'AccesoDatos.php';
 
 class Usuario {
 
-    //--Atributos
+    //--ATRIBUTOS
     public $id;
     public $nombre;
     public $email;
