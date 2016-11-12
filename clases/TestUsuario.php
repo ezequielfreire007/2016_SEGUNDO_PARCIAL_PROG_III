@@ -26,4 +26,6 @@
 
     $miUlitmoUsuario = Usuario::Agregar($usuario);
     var_dump($miUlitmoUsuario);
+    /////////////////////////////////////////////////////////////////////
+    
  ?>

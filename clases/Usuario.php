@@ -28,7 +28,7 @@ class Usuario {
         $objetoAccesoDatos = AccesoDatos::dameUnObjetoAcceso();
         //Genero la consulta
         $consulta = $objetoAccesoDatos->RetornarConsulta("SELECT * FROM `usuarios` WHERE `id`= $id");
-        //Executo la consulta
+        //Ejecuto la consulta
         $consulta->execute();
         return $consulta->fetchAll(PDO::FETCH_CLASS,"Usuario");
     }
@@ -39,7 +39,7 @@ class Usuario {
         //Genero la consulta
         $consulta = $objetoAccesoDatos->RetornarConsulta("INSERT into usuarios (nombre, email, password, perfil, foto)
                                                             values('$obj->nombre','$obj->email','$obj->password','$obj->perfil',$obj->foto)");
-        //Executo la consulta
+        //Ejecuto la consulta
         $consulta->execute();
         var_dump($consulta);
         return $objetoAccesoDatos->RetornarUltimoIdInsertado();
@@ -58,7 +58,7 @@ class Usuario {
         $objetoAccesoDatos = AccesoDatos::dameUnObjetoAcceso();
         //Genero la consulta
         $consulta = $objetoAccesoDatos->RetornarConsulta("SELECT * FROM `usuarios`");
-        //Executo la consulta
+        //Ejecuto la consulta
         $consulta->execute();
         //Casteo los usuario a una variable y la retorno
         $usuarios = $consulta->fetchAll(PDO::FETCH_CLASS,"Usuario");
@@ -70,7 +70,7 @@ class Usuario {
         $objetoAccesoDatos = AccesoDatos::dameUnObjetoAcceso();
         //Genero la consultao
         $consulta = $objetoAccesoDatos->RetornarConsulta("SELECT DISTINCT `perfil` FROM `usuarios`");
-        //Executo la consulta
+        //Ejecuto la consulta
         $consulta->execute();
         //Genero un array de los perfiles
         $perfiles = $consulta->fetchAll(PDO::FETCH_OBJ); //CONSULTA
@@ -84,6 +84,16 @@ class Usuario {
     }
 
     public static function Borrar($id) {
+        //Instancio un objeto a acceso a datos
+        $objetoAccesoDatos = AccesoDatos::dameUnObjetoAcceso();
+        //Genero la consulta
+        $consulta = $objetoAccesoDatos->RetornarConsulta("DELETE FROM usuarios WHERE id=:id");
+        //Vinculo un valor al parametro de sustitucion :id
+        $consulta->bindValue(':id', $id, PDO:PARAM_INT);
+        //Ejecuto la consulta
+        $consulta->execute();
+        //Devolvemos el numero de filas afectadas por la consulta
+        return $consulta->rowCount();
 
     }
 

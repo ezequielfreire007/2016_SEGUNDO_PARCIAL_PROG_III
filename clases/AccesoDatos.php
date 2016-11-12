@@ -8,7 +8,8 @@ class AccesoDatos
     private function __construct()
     {
         try {
-            $this->_objPDO = new PDO('mysql:host=localhost;dbname=login_pdo;charset=utf8','root','123',array(PDO::ATTR_EMULATE_PREPARES=>false,PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
+            $this->_objPDO = new PDO('mysql:host=localhost;dbname=login_pdo;charset=utf8','root','123',
+                                    array(PDO::ATTR_EMULATE_PREPARES=>false,PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
             $this->_objPDO->exec("SET CHARACTER SET utf8");
         } catch (PDOException $e) {
             echo "Error".'<br>'.$e->getMessage();
