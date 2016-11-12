@@ -50,7 +50,25 @@ class Usuario {
     }
 
     public static function Modificar($obj) {
-		//IMPLEMENTAR...
+		//Instancio un objeto a acceso a datos
+        $objetoAccesoDatos = AccesoDatos::dameUnObjetoAcceso();
+        //Genero la consulta
+        $consulta = $objetoAccesoDatos->RetornarConsulta("UPDATE usuarios
+                                                            set nombre=:nombre,
+                                                                email=:email,
+                                                                password=:password,
+                                                                perfil=:perfil,
+                                                                foto=:foto
+                                                            WHERE id=:id");
+        //Vinculo un valor a los parametros de sustitucion :nombre, :email, :password, :perfil, :foto
+        $consulta->bindValue(':id', $obj->id, PDO::PARAM_INT);
+        $consulta->bindValue(':nombre', $obj->nombre, PDO::PARAM_STR);
+        $consulta->bindValue(':email',$obj->email, PDO::PARAM_STR);
+        $consulta->bindValue(':password', $obj->password, PDO::PARAM_STR);
+        $consulta->bindValue(':perfil', $obj->perfil, PDO::PARAM_STR);
+        $consulta->bindValue(':foto', $obj->foto, PDO::PARAM_STR);
+        //Ejecuto la consulta y retorno
+        return $consulta->execute();
     }
 
     public static function TraerTodosLosUsuarios() {
