@@ -90,15 +90,10 @@ class Usuario {
         $consulta = $objetoAccesoDatos->RetornarConsulta("SELECT DISTINCT `perfil` FROM `usuarios`");
         //Ejecuto la consulta
         $consulta->execute();
-        //Genero un array de los perfiles
+        //Genero un array stdClass de los perfiles
         $perfiles = $consulta->fetchAll(PDO::FETCH_OBJ); //CONSULTA
-        //retono los primeros 3 perfiles
-        $retorno = array();
-        for ($i=0; $i < count($perfiles); $i++) {
-            $retorno[$i] = $perfiles[$i]->perfil;
-        }
-        //retorno el array de perfiles
-        return $retorno;
+        //retorno los perfiles
+        return $perfiles;
     }
 
     public static function Borrar($id) {

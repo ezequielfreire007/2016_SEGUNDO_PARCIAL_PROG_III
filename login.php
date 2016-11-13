@@ -1,12 +1,12 @@
 <html>
 <head>
 	<title>APELLIDO Y NOMBRE DEL ALUMNO</title>
-	  
+
         <meta charset="UTF-8">
         <!-- jQuery library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script type="text/javascript" src="./js/funcionesLogin.js"></script>
- 
+
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/estilo.css">
         <link rel="stylesheet" type="text/css" href="css/animacion.css">
@@ -15,7 +15,7 @@
 <body>
 	<div class="container">
 		<div class="page-header">
-			<h1>LOGIN - PDO</h1>      
+			<h1>LOGIN - PDO</h1>
 		</div>
 		<div class="CajaInicio animated bounceInRight">
 			<h1>LOGIN</h1>

@@ -2,16 +2,20 @@ function Login() {
 
     var email = $("#email").val();
     var password = $("#password").val();
-    var pagina = '../adminLogin.php';
+    var pagina = './adminLogin.php';
 
     $.ajax({
-        datatype:'json',
+        type: 'post',
         pagina: pagina,
+        datatype:'json',
         data:{email:email, password:password},
         async: true
     })
-    .done(funtion(respuesta){
+    .done(function(respuesta){
         alert(respuesta);
+        if () {
+
+        }
         return;
     })
     .fail(function (jqXHR, textStatus, errorThrown){
