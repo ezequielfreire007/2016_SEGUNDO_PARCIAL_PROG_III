@@ -8,7 +8,10 @@
     /////////////////////////////////////////////////////////////////////
     echo "TraerTodosLosUsuarios"."<br>";
     $usuarios = Usuario::TraerTodosLosUsuarios();
-    var_dump($usuarios);
+    foreach ($usuarios as $value) {
+        echo $value->email;
+    }
+    //var_dump($usuarios);
     echo "<br><br>";
     /////////////////////////////////////////////////////////////////////
     echo "TraerUnUsuarioPorId"."<br>";
@@ -27,5 +30,7 @@
     $miUlitmoUsuario = Usuario::Agregar($usuario);
     var_dump($miUlitmoUsuario);
     /////////////////////////////////////////////////////////////////////
-    
+    echo "Borrar"."<br>";
+    Usuario::Borrar(5);
+    var_dump(Usuario::TraerTodosLosUsuarios());
  ?>
