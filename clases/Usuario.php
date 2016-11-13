@@ -20,7 +20,7 @@ class Usuario {
 
     //--METODOS DE CLASE
     public static function TraerUsuarioLogueado($obj) {
-		return $this->TraerUnUsuarioPorId($ob->id);
+		return $this->TraerUnUsuarioPorId($obj->id);
     }
 
     public static function TraerUnUsuarioPorId($id) {

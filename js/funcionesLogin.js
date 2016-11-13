@@ -2,25 +2,30 @@ function Login() {
 
     var email = $("#email").val();
     var password = $("#password").val();
-    var pagina = './adminLogin.php';
+    var pagina = "./adminLogin.php";
 
     $.ajax({
-        type: 'post',
-        pagina: pagina,
-        datatype:'json',
+        type:'post',
+        url:pagina,
+        dataType:'json',
         data:{email:email, password:password},
-        async: true
+        async:true
     })
     .done(function(respuesta){
-        alert(respuesta);
-        if () {
-
+        alert(respuesta.esta);
+        if (respuesta.esta) {
+            window.location.href = "./principal.php";
+        }
+        else {
+            alert("Error" +"<br>"+ respuesta);
         }
         return;
     })
     .fail(function (jqXHR, textStatus, errorThrown){
         alert(jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
     })
+
+
 
 
 }
