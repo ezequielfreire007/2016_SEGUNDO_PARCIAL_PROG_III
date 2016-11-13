@@ -8,7 +8,10 @@
     /////////////////////////////////////////////////////////////////////
     echo "TraerTodosLosUsuarios"."<br>";
     $usuarios = Usuario::TraerTodosLosUsuarios();
-    var_dump($usuarios);
+    foreach ($usuarios as $value) {
+        echo $value->email;
+    }
+    //var_dump($usuarios);
     echo "<br><br>";
     /////////////////////////////////////////////////////////////////////
     echo "TraerUnUsuarioPorId"."<br>";

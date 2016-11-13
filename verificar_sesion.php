@@ -1,1 +1,1 @@
-<?php//IMPLEMENTAR...
+<?php    session_start();    
