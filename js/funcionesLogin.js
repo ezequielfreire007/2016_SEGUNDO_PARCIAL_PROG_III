@@ -2,30 +2,29 @@ function Login() {
 
     var email = $("#email").val();
     var password = $("#password").val();
+    var obj = { "email":email, "password":password };
     var pagina = "./adminLogin.php";
 
     $.ajax({
         type:'post',
         url:pagina,
         dataType:'json',
-        data:{email:email, password:password},
+        data:{obj:obj},
         async:true
     })
     .done(function(respuesta){
-        alert(respuesta.esta);
+        //alert(respuesta.esta);
         if (respuesta.esta) {
+
             window.location.href = "./principal.php";
         }
         else {
-            alert("Error" +"<br>"+ respuesta);
+            alert("Error" +"<br>"+ respuesta.mensaje);
         }
         return;
     })
     .fail(function (jqXHR, textStatus, errorThrown){
         alert(jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
     })
-
-
-
 
 }

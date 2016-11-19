@@ -1,9 +1,9 @@
 <?php
-//IMPLEMENTAR...
-?>
+	//require_once 'verificar_sesion.php';
+ ?>
 <html>
     <head>
-        <title>APELLIDO Y NOMBRE DEL ALUMNO</title> 
+        <title>APELLIDO Y NOMBRE DEL ALUMNO</title>
 
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,7 +25,7 @@
 				echo "<a class='btn btn-primary animated bounceInLeft' href='#' onclick='EditarUsuario()'><span class='glyphicon glyphicon-user'></span>Editar Perfil&nbsp;</a>";
 				echo "<a class='btn btn-info animated bounceInLeft' href='#' onclick='CargarFormUsuario()'><span class='glyphicon glyphicon-user'>&nbsp;</span><span class='glyphicon glyphicon-plus-sign'></span>Agregar Usuario&nbsp;</a>";
 				echo "<a class='btn btn-warning animated bounceInLeft' href='#' onclick='ElegirTheme()'><span class='glyphicon glyphicon-pencil'>&nbsp;</span>Elegir Theme</a>";
-				echo "<a class='btn btn-danger animated bounceInLeft' href='#' onclick='Logout()'><span class='glyphicon glyphicon-off'></span>LogOut&nbsp;</a>";        	  
+				echo "<a class='btn btn-danger animated bounceInLeft' href='#' onclick='Logout()'><span class='glyphicon glyphicon-off'></span>LogOut&nbsp;</a>";
                 ?>
                 <span id="spanFoto" class="animated bounceInRight" style='margin-top:-38px' ><img src="./fotos/<?php echo $objUser->foto; ?>" width='80px' height='80px'/></span>
                 <span id="spanDatos" class="animated bounceInRight" style='margin-top:-10px' ><h3><?php //IMPLEMENTAR... ?>&nbsp;&nbsp;</h3></span>

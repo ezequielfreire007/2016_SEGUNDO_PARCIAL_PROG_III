@@ -1,6 +1,4 @@
-<?php
-	require_once 'verificar_sesion.php';
- ?>
+
 <html>
 <head>
 	<title>APELLIDO Y NOMBRE DEL ALUMNO</title>
