@@ -13,9 +13,7 @@ function Login() {
         async:true
     })
     .done(function(respuesta){
-        //alert(respuesta.esta);
         if (respuesta.esta) {
-
             window.location.href = "./principal.php";
         }
         else {

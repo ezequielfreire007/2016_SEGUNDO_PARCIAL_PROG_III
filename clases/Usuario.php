@@ -20,7 +20,19 @@ class Usuario {
 
     //--METODOS DE CLASE
     public static function TraerUsuarioLogueado($obj) {
-		return $this->TraerUnUsuarioPorId($obj->id);
+        $retorno = NULL;
+        //Instancio un objeto a acceso a datos
+        $objetoAccesoDatos = AccesoDatos::dameUnObjetoAcceso();
+        //Genero la consulta
+        $consulta = $objetoAccesoDatos->RetornarConsulta("SELECT * FROM usuarios WHERE email=:email AND password=:password");
+        //Viculo un valor a los parametros de sustitucion :id y :email
+        $consulta->bindParam(':email',$obj->email, PDO::PARAM_STR);
+        $consulta->bindParam(':password',$obj->password, PDO::PARAM_STR);
+        //Ejecuto la consulta
+        $consulta->execute();
+        //retorno un usuario
+        $retorno = $consulta->fetch(PDO::FETCH_ASSOC);
+	    return $retorno;
     }
 
     public static function TraerUnUsuarioPorId($id) {

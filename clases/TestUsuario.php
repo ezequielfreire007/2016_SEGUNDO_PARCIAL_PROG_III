@@ -27,10 +27,22 @@
     $usuario->perfil = "administrador";
     $usuario->foto = "4";
 
-    $miUlitmoUsuario = Usuario::Agregar($usuario);
-    var_dump($miUlitmoUsuario);
+    //$miUlitmoUsuario = Usuario::Agregar($usuario);
+    //var_dump($miUlitmoUsuario);
+    //echo "<br><br>";
     /////////////////////////////////////////////////////////////////////
     echo "Borrar"."<br>";
-    Usuario::Borrar(5);
+    //Usuario::Borrar(5);
     var_dump(Usuario::TraerTodosLosUsuarios());
+    echo "<br><br>";
+    /////////////////////////////////////////////////////////////////////
+    echo "TraerUsuarioLogueado".'<br>';
+    $obj = new stdClass();
+    $obj->email = "user@user.com";
+    $obj->password = "123456";
+    echo "<br>";
+    $usuario = Usuario::TraerUsuarioLogueado($obj);
+    var_dump($usuario);
+    echo "<br><br>";
+
  ?>

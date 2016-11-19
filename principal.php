@@ -1,5 +1,5 @@
 <?php
-	//require_once 'verificar_sesion.php';
+	require_once 'verificar_sesion.php';
  ?>
 <html>
     <head>
