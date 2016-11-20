@@ -1,10 +1,46 @@
+$(document).ready(function(){
+    //$("#divGrilla").hide(); //no muestra la grilla
+})
+
+
 function Logout() {//#2
 
-		//IMPLEMENTAR...
+        var pagina = "./administracion.php";
+
+        $.ajax({
+            type:'post',
+            url:pagina,
+            dataType:'text',
+            data:{queMuestro:"2"},
+            async:true
+        })
+        .done(function(respuesta){
+            //alert(respuesta);
+            window.location.href = "./login.php";
+        })
+        .fail(function(jqXHR, textStatus, errorThrown){
+            alert(jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+        })
 
 }
 function MostrarGrilla() {//#3
-		//IMPLEMENTAR...
+
+        var pagina = "./administracion.php";
+
+        $.ajax({
+            type:'post',
+            url:pagina,
+            dataType:'html',
+            data:{queMuestro:"3"},
+            async:true
+        })
+        .done(function(respuesta){
+            alert(respuesta); 
+            $("#divGrilla").html(respuesta);     
+        })
+        .fail(function(jqXHR, textStatus, errorThrown){
+            alert(jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+        })
 }
 function Home() {//#3-sin case
 		//IMPLEMENTAR...

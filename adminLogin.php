@@ -20,7 +20,7 @@
         $uls->email = $usuarios['email'];
         $uls->perfil = $usuarios['perfil'];
         $uls->foto = $usuarios['foto'];
-        
+
         session_start();
         $_SESSION['uls'] = $uls;
 

@@ -1,1 +1,1 @@
-<?php    session_start();    if (!(isset($_SESSION['uls'])) ) {        header('Location: login.php?uss='.$_GET['esta']);    }    session_destroy();
+<?php    session_start();    if (!(isset($_SESSION['uls'])) ) {        header('Location: login.php?uss='.$_GET['esta']);    }    //session_destroy();//borrar una vez que se termine el proyecto

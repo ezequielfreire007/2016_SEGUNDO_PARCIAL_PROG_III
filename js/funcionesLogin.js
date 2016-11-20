@@ -17,7 +17,7 @@ function Login() {
             window.location.href = "./principal.php";
         }
         else {
-            alert("Error" +"<br>"+ respuesta.mensaje);
+            alert("Error" +"\n"+ respuesta.mensaje);
         }
         return;
     })

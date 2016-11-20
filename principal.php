@@ -27,8 +27,8 @@
 				echo "<a class='btn btn-warning animated bounceInLeft' href='#' onclick='ElegirTheme()'><span class='glyphicon glyphicon-pencil'>&nbsp;</span>Elegir Theme</a>";
 				echo "<a class='btn btn-danger animated bounceInLeft' href='#' onclick='Logout()'><span class='glyphicon glyphicon-off'></span>LogOut&nbsp;</a>";
                 ?>
-                <span id="spanFoto" class="animated bounceInRight" style='margin-top:-38px' ><img src="./fotos/<?php echo $objUser->foto; ?>" width='80px' height='80px'/></span>
-                <span id="spanDatos" class="animated bounceInRight" style='margin-top:-10px' ><h3><?php //IMPLEMENTAR... ?>&nbsp;&nbsp;</h3></span>
+                <span id="spanFoto" class="animated bounceInRight" style='margin-top:-38px' ><img src="./fotos/<?php echo $_SESSION['uls']->foto; ?>" width='80px' height='80px'/></span>
+                <span id="spanDatos" class="animated bounceInRight" style='margin-top:-10px' ><h3><?php echo $_SESSION['uls']->nombre." - ".$_SESSION['uls']->perfil; ?>&nbsp;&nbsp;</h3></span>
             </div>
             <h1 style="font-size:28px">PRINCIPAL</h1>
             <hr/>
@@ -36,7 +36,7 @@
 
             </div>
             <div id="divGrilla"  style='border-style:none;float:right;width:70%'>
-
+                
             </div>
         </div>
     </body>
