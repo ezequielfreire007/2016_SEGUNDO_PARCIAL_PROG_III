@@ -35,7 +35,7 @@ function MostrarGrilla() {//#3
             async:true
         })
         .done(function(respuesta){
-            alert(respuesta); 
+            //alert(respuesta); 
             $("#divGrilla").html(respuesta);     
         })
         .fail(function(jqXHR, textStatus, errorThrown){
@@ -43,21 +43,38 @@ function MostrarGrilla() {//#3
         })
 }
 function Home() {//#3-sin case
-		//IMPLEMENTAR...
+	    window.location.href = "./principal.php";
 }
-function CargarFormUsuario() {//#4
-		//IMPLEMENTAR...
+function CargarFormUsuario(id) {//#4
+	   var pagina = "./administracion.php";
+       var id = id;
+       
+
+        $.ajax({
+            type:'post',
+            url:pagina,
+            dataType:'html',
+            data:{queMuestro:"4", id:id},
+            async:true
+        })
+        .done(function(respuesta){
+            alert(respuesta); 
+            $("#divAbm").html(respuesta);     
+        })
+        .fail(function(jqXHR, textStatus, errorThrown){
+            alert(jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+        })
 }
 function SubirFoto() {//#5
 		//IMPLEMENTAR...
 }
-function AgregarUsuario() {//#6
+function AgregarUsuario(obj) {//#6
 		//IMPLEMENTAR...
 }
-function EditarUsuario(obj) {//#7 sin case
+function EditarUsuario() {//#7 sin case
 		//IMPLEMENTAR...
 }
-function EliminarUsuario() {//#7
+function EliminarUsuario(obj) {//#7
 		//IMPLEMENTAR...
 }
 function ModificarUsuario() {//#8

@@ -14,35 +14,37 @@
             </tr> 
         </thead>   	
         <?php
-		    $perfil = $_SESSION['uls']->perfil;
+		  
             $usuarios = Usuario::TraerTodosLosUsuarios();
+            //var_dump($usuarios);
             $tabla = "";
-            switch ($perfil) {
-                case 'administrador':
-                    foreach ($usuarios as $usuario) {
-                        $tabla = "<tr>";
-                        $tabla .=    "<td>". $usuario->nombre ."</td>";
-                        $tabla .=    "<td>". $usuario->email ."</td>";
-                        $tabla .=    "<td>". $usuario->perfil ."</td>";
-                        $tabla .=    "<td><img src='./fotos/". $usuario->foto."'width='80px' height='80px'/></td>";
-                        $tabla .=    "<td><input type='button' class='MiBotonUTN' onclick='ModificarUsuario()' value='Modificar'/><input type='button' class='MiBotonUTN' onclick='".$usuario->id."' value='Eliminar'/></td>";
-                        $tabla .="</tr>";
-
-                        echo $tabla;
-                    }
-                    break;
-                case 'usuario':
-                    # code...
-                    break;
-                case 'invitado':
-                    # code...
-                    break;
-                default:
-                    # code...8
-                    break;
-            }
-
             
+            foreach ($usuarios as $usuario) {
+                $tabla = "<tr>";
+                $tabla .=    "<td>". $usuario->nombre ."</td>";
+                $tabla .=    "<td>". $usuario->email ."</td>";
+                $tabla .=    "<td>". $usuario->perfil ."</td>";
+                $tabla .=    "<td><img src='./fotos/". $usuario->foto."'width='80px' height='80px'/></td>";
+                $tabla .=    "<td>";
+
+                if ($_SESSION['uls']->perfil != "invitado") {
+                    if ($_SESSION['uls']->perfil == "administrador") {
+                        $tabla .= "<input type='button' class='MiBotonUTN' onclick='CargarFormUsuario(".$usuario->id .") ' value='Modificar'/>";
+                        $tabla .= "<input type='button' class='MiBotonUTN' onclick='EditarUsuario(".$usuario->id.")' value='Eliminar'/>";
+                    }
+                    else
+                    {
+                        $tabla .= "<input type='button' class='MiBotonUTN' onclick='CargarFormUsuario(".$usuario->id .") ' value='Modificar'/>";
+                    }
+                    
+                     
+                }
+
+                $tabla .= "</td>";
+                        
+                $tabla .="</tr>";
+                echo $tabla;
+            }
 		?>
 
     </table>
