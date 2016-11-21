@@ -29,15 +29,13 @@
 
                 if ($_SESSION['uls']->perfil != "invitado") {
                     if ($_SESSION['uls']->perfil == "administrador") {
-                        $tabla .= "<input type='button' class='MiBotonUTN' onclick='CargarFormUsuario(".$usuario->id .") ' value='Modificar'/>";
-                        $tabla .= "<input type='button' class='MiBotonUTN' onclick='EditarUsuario(".$usuario->id.")' value='Eliminar'/>";
+                        $tabla .= "<input type='button'  class='MiBotonUTN' onclick='CargarFormUsuario(".$usuario->id.",1) ' value='Modificar'/>";
+                        $tabla .= "<input type='button'  class='MiBotonUTN' onclick='CargarFormUsuario(".$usuario->id.",Eliminar)' value='Eliminar'/>";
                     }
                     else
                     {
-                        $tabla .= "<input type='button' class='MiBotonUTN' onclick='CargarFormUsuario(".$usuario->id .") ' value='Modificar'/>";
-                    }
-                    
-                     
+                        $tabla .= "<input type='button' class='MiBotonUTN' onclick='CargarFormUsuario(".$usuario->id.",2) ' value='Eliminar'/>";
+                    }    
                 }
 
                 $tabla .= "</td>";

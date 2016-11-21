@@ -20,20 +20,20 @@
     echo "<br><br>";
     /////////////////////////////////////////////////////////////////////
     echo "Agregar"."<br>";
-    $usuario = new Usuario();
+    $usuario = new Usuario(4);
     $usuario->nombre = "Pepe";
     $usuario->email = "pepe@gmail.com";
     $usuario->password = "1234";
     $usuario->perfil = "administrador";
-    $usuario->foto = "4";
+    $usuario->foto = "4.jpg";
 
-    //$miUlitmoUsuario = Usuario::Agregar($usuario);
+   // $miUlitmoUsuario = Usuario::Agregar($usuario);
     //var_dump($miUlitmoUsuario);
     //echo "<br><br>";
     /////////////////////////////////////////////////////////////////////
     echo "Borrar"."<br>";
     //Usuario::Borrar(5);
-    var_dump(Usuario::TraerTodosLosUsuarios());
+    //var_dump(Usuario::TraerTodosLosUsuarios());
     echo "<br><br>";
     /////////////////////////////////////////////////////////////////////
     echo "TraerUsuarioLogueado".'<br>';
@@ -41,8 +41,12 @@
     $obj->email = "user@user.com";
     $obj->password = "123456";
     echo "<br>";
-    $usuario = Usuario::TraerUsuarioLogueado($obj);
-    var_dump($usuario);
+    //$usuario = Usuario::TraerUsuarioLogueado($obj);
+    //var_dump($usuario);
     echo "<br><br>";
-
+    /////////////////////////////////////////////////////////////////////
+    echo "ModificarUsuario".'<br>';
+    $usuario->perfil = "usuario";
+    $usuario->email = "pepe@hotmail.com";
+    echo Usuario::Modificar($usuario);
  ?>

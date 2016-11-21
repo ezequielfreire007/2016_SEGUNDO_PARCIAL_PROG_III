@@ -2,69 +2,84 @@
     require_once 'verificar_sesion.php';
     require_once 'clases/Usuario.php';
 
-    $id = isset($_POST['id']) ? $_POST['id']:NULL; //CARGGO OBJETO RECIBIDO DEL AJAX SI ES QUE TIENE
+    $id = isset($_POST['id']) ? $_POST['id']:NULL; //CARGGO ID RECIBIDO DEL AJAX SI ES QUE TIENE
+    $queBoton = isset($_POST['queBoton']) ? $_POST['queBoton']:NULL;
+    // var_dump($queBoton);
+    $perfil = $_SESSION['uls']->perfil; 
+    $disableText = ($perfil != "administrador") ? "disabled":"";  
     $btn = "";
     $btnNombre = "";
     $user = NULL;
     $selectCob = Usuario::TraerTodosLosPerfiles();
-    //var_dump($selectCob);
 
+    switch ($queBoton) {
+        case "1": //MODIFICAR
+            //modifico
+            $users = Usuario::TraerUnUsuarioPorId($id);//retorna un array de un elemento
+            //var_dump($users);
+            foreach ($users as $value) {
+                $user = $value;
+            }
+            $_GET['imatmp'] = $user->foto;
+            // var_dump($user->perfil);
+            $btn ="ModificarUsuario()";
+            $btnNombre = "Modificar";
+            break;
+        case "2": //EELIMINAR
+            $user = Usuario::TraerUnUsuarioPorId($id);
+            foreach ($users as $value) {
+                $user = $value;
+            }
+            $btn ="EliminarUsuario(".$user->id.")";
+            $btnNombre = "Eliminar";
+            break;
+        case "3": //EDITAR
+            $user = $_SESSION['uls'];
+            $btn ="EditarUsuario()";
+            $btnNombre = "Editar";
+            break;
+        case "4": //AGREGAR
+            $user = new Usuario();
 
-    if ($id == NULL) {
-        $user = NULL;
-         //$btn = "AgregarUsuario(obj)"
-    }else
-    {
-        //modifico
-        $users = Usuario::TraerUnUsuarioPorId($id);//retorna un array de un elemento
-        //var_dump($users);
-        foreach ($users as $value) {
-            $user = $value;
-        }
-        //var_dump($user);
-        $btn ="ModificarUsuario()";
-        $btnNombre = "Modificar";
+            $user->nombre = " ";
+            $user->email = " ";
+            $user->perfil = " ";
+            $_GET['imatmp'] = "pordefecto.jpg";
+            $btn ="EditarUsuario()";
+            $btnNombre = "Editar";
+            break;
     }
-
-    if ($user == $_SESSION['uls']) {
-        //edito perfil
-    }
-
 ?>
 <div id="divFrm" class="animated bounceInLeft" style="height:330px;overflow:auto;margin-top:0px;border-style:solid">
-    <input type="hidden" id="hdnIdUsuario" value="<?php echo $user->id; ?>" />
-    <input type="text" placeholder="Nombre" id="txtNombre" value="<?php echo $user->nombre;?>"/>
-    <input type="text" placeholder="E-mail" id="txtEmail" value="<?php  echo $user->email; ?>" />
+    <input type="hidden" id="hdnIdUsuario" value="<?php echo $user->id." ". $disableText ; ?>" <?php echo $disableText; ?>/>
+    <input type="text" placeholder="Nombre" id="txtNombre" value="<?php echo $user->nombre;?>" <?php echo $disableText; ?>/>
+    <input type="text" placeholder="E-mail" id="txtEmail" value="<?php  echo $user->email; ?>" <?php echo $disableText; ?>/>
     <input type="password" placeholder="Password" id="txtPassword" value="" />
 
     <span>Perfil</span>
     <select id="cboPerfiles" >
-        <?php 
-
-            $perfil = $_SESSION['uls']->perfil;
-            var_dump($perfil);
+        <?php        
+            
             switch ($perfil) {
                 case 'administrador':
 
-                    //
                     foreach ($selectCob as $value) {
-                        $selected = ($value->perfil == "administrador") ? " selected":"";
+                        $selected = ($user->perfil == $value->perfil) ? " selected":"";
                         echo "<option value='".$value->perfil."'".$selected." >".$value->perfil."</option>";
                     }
                     break;
                 case 'usuario':
                     foreach ($selectCob as $value) {
-                        $selected = ($value->perfil == "usuario") ? " selected":"";
-                        $disable = ($value->perfil == "administrador") ? "disabled":"";
-                        echo "<option value='".$value->perfil."'".$selected." ".$disable." >".$value->perfil."</option>";
+                        $selected = ($user->perfil == $value->perfil) ? " selected":"";
+                        //$disable = ($value->perfil == "administrador" || $value->perfil == "invitado") ? "disabled":"";
+                        echo "<option value='".$value->perfil."'".$selected." disabled >".$value->perfil."</option>";
                     }
                     break;
                 case 'invitado':
                     foreach ($selectCob as $value) {
-                        $selected = ($value->perfil == "invitado") ? " selected":"";
-                        $disable = ($value->perfil == "administrador" || $value->perfil == "usuario" ) ? "disabled":"";
-
-                        echo "<option value='".$value->perfil."'".$selected." ".$disable." >".$value->perfil."</option>";
+                        $selected = ($user->perfil == $value->perfil) ? " selected":"";
+                        //$disable = ($value->perfil == "administrador" || $value->perfil == "usuario" ) ? "disabled":"";
+                        echo "<option value='".$value->perfil."'".$selected." disabled >".$value->perfil."</option>";
                     }
                     break;
                 
@@ -77,7 +92,7 @@
     </select>
     <br/><br/>
 
-    <input type="file" id="archivo" onchange="SubirFoto()" /> 
+    <input type="file" id="archivo" onchange="SubirFoto(<?php echo $id; ?>)" /> 
 
     <input type="button" class="MiBotonUTN" onclick="<?php echo $btn; ?>" value="<?php echo $btnNombre; ?>"  />
     <input type="hidden" id="hdnQueHago" value="agregar" />
@@ -86,9 +101,9 @@
     <div style="width:25%;float:left"></div>
     <div style="width:75%;float:right">
 
-        <img id="fotoTmp" src="./fotos/<?php echo $user->foto; ?>" style="float:left" class="fotoform" />
+        <img id="fotoTmp" src="./fotos/<?php echo $_GET['imatmp']; ?>" style="float:left" class="fotoform" />
 
-        <input type="hidden" id="hdnFotoSubir" value="<?php //IMPLEMENTAR... ?>" />
+        <input type="hidden" id="hdnFotoSubir" value="<?php echo $_GET['imatmp']; ?>" />
 
     </div>
 </div>

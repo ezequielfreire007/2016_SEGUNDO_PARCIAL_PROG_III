@@ -57,28 +57,25 @@ class Usuario {
         return $objetoAccesoDatos->RetornarUltimoIdInsertado();
     }
 
-    public function ActualizarFoto() {
-		//IMPLEMENTAR...
+    public static function ActualizarFoto() {
+		$id = $_POST['id'];
+        $respuesta = Archivo::Subir($id);
+        echo json_encode($respuesta);
     }
 
     public static function Modificar($obj) {
 		//Instancio un objeto a acceso a datos
         $objetoAccesoDatos = AccesoDatos::dameUnObjetoAcceso();
         //Genero la consulta
-        $consulta = $objetoAccesoDatos->RetornarConsulta("UPDATE usuarios
-                                                            set nombre=:nombre,
-                                                                email=:email,
-                                                                password=:password,
-                                                                perfil=:perfil,
-                                                                foto=:foto
-                                                            WHERE id=:id");
+        $consulta = $objetoAccesoDatos->RetornarConsulta("UPDATE `usuarios` SET `nombre`=:nombre,`email`=:email,`password`=:password,`perfil`=:perfil,`foto`=:foto WHERE `id`=:id ");
         //Vinculo un valor a los parametros de sustitucion :nombre, :email, :password, :perfil, :foto
-        $consulta->bindValue(':id', $obj->id, PDO::PARAM_INT);
-        $consulta->bindValue(':nombre', $obj->nombre, PDO::PARAM_STR);
+       
+        $consulta->bindValue(':nombre',$obj->nombre, PDO::PARAM_STR);
         $consulta->bindValue(':email',$obj->email, PDO::PARAM_STR);
-        $consulta->bindValue(':password', $obj->password, PDO::PARAM_STR);
-        $consulta->bindValue(':perfil', $obj->perfil, PDO::PARAM_STR);
-        $consulta->bindValue(':foto', $obj->foto, PDO::PARAM_STR);
+        $consulta->bindValue(':password',$obj->password, PDO::PARAM_STR);
+        $consulta->bindValue(':perfil',$obj->perfil, PDO::PARAM_STR);
+        $consulta->bindValue(':foto',$obj->foto, PDO::PARAM_STR);
+        $consulta->bindValue(':id', $obj->id, PDO::PARAM_INT);
         //Ejecuto la consulta y retorno
         return $consulta->execute();
     }

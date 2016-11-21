@@ -21,7 +21,7 @@
         <div class="container" style="width:100%" >
             <div class="page-header">
                 <?php
-
+                $id = 0;
                
                 echo "<a class='btn btn-success animated bounceInLeft' href='#' onclick='Home()'><span class='glyphicon glyphicon-home'>&nbsp;</span>Home</a>";
                 echo "<a class='btn btn-default animated bounceInLeft' href='#' onclick='MostrarGrilla()'><span class='glyphicon glyphicon-th'>&nbsp;</span>Grilla&nbsp;</a>";
@@ -30,7 +30,7 @@
                 }
 				
                 if ($_SESSION['uls']->perfil == "administrador") {
-                    echo "<a class='btn btn-info animated bounceInLeft' href='#' onclick='CargarFormUsuario()'><span class='glyphicon glyphicon-user'>&nbsp;</span><span class='glyphicon glyphicon-plus-sign'></span>Agregar Usuario&nbsp;</a>";
+                    echo "<a class='btn btn-info animated bounceInLeft' href='#' onclick='CargarFormUsuario(".$id.",4)'><span class='glyphicon glyphicon-user'>&nbsp;</span><span class='glyphicon glyphicon-plus-sign'></span>Agregar Usuario&nbsp;</a>";
                 }
 				
 				echo "<a class='btn btn-warning animated bounceInLeft' href='#' onclick='ElegirTheme()'><span class='glyphicon glyphicon-pencil'>&nbsp;</span>Elegir Theme</a>";
