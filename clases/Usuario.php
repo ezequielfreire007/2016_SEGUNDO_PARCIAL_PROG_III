@@ -50,7 +50,13 @@ class Usuario {
         $objetoAccesoDatos = AccesoDatos::dameUnObjetoAcceso();
         //Genero la consulta
         $consulta = $objetoAccesoDatos->RetornarConsulta("INSERT into usuarios (nombre, email, password, perfil, foto)
-                                                            values('$obj->nombre','$obj->email','$obj->password','$obj->perfil',$obj->foto)");
+                                                            values(:nombre,:email,:password,:perfil,:foto)");
+        $consulta->bindValue(':nombre',$obj->nombre, PDO::PARAM_STR);
+        $consulta->bindValue(':email',$obj->email, PDO::PARAM_STR);
+        $consulta->bindValue(':password',$obj->password, PDO::PARAM_STR);
+        $consulta->bindValue(':perfil',$obj->perfil, PDO::PARAM_STR);
+        $consulta->bindValue(':foto',$obj->foto, PDO::PARAM_STR);
+        
         //Ejecuto la consulta
         $consulta->execute();
         var_dump($consulta);

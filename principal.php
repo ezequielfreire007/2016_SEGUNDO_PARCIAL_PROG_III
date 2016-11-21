@@ -26,7 +26,7 @@
                 echo "<a class='btn btn-success animated bounceInLeft' href='#' onclick='Home()'><span class='glyphicon glyphicon-home'>&nbsp;</span>Home</a>";
                 echo "<a class='btn btn-default animated bounceInLeft' href='#' onclick='MostrarGrilla()'><span class='glyphicon glyphicon-th'>&nbsp;</span>Grilla&nbsp;</a>";
                  if (($_SESSION['uls']->perfil == "administrador") || ($_SESSION['uls']->perfil == "usuario")) {
-                    echo "<a class='btn btn-primary animated bounceInLeft' href='#' onclick='EditarUsuario()'><span class='glyphicon glyphicon-user'></span>Editar Perfil&nbsp;</a>";
+                    echo "<a class='btn btn-primary animated bounceInLeft' href='#' onclick='CargarFormUsuario(".$id.",3)'><span class='glyphicon glyphicon-user'></span>Editar Perfil&nbsp;</a>";
                 }
 				
                 if ($_SESSION['uls']->perfil == "administrador") {

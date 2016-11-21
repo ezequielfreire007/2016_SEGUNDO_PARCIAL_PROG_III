@@ -44,6 +44,7 @@
     //$usuario = Usuario::TraerUsuarioLogueado($obj);
     //var_dump($usuario);
     echo "<br><br>";
+    echo exec('whoami');
     /////////////////////////////////////////////////////////////////////
     echo "ModificarUsuario".'<br>';
     $usuario->perfil = "usuario";

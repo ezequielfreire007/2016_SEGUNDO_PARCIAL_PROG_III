@@ -102,14 +102,54 @@ function SubirFoto(id) {//#5
         }); 
 }
 
-function AgregarUsuario(obj) {//#6
-		//IMPLEMENTAR...
+function AgregarUsuario() {//#6
+		
+        var pagina = "./administracion.php";
+        
+        //var id = $("#hdnIdUsuario").val();
+        var nombre = $("#txtNombre").val();
+        var email = $("#txtEmail").val();
+        var perfil = $("#cboPerfiles").val();
+        var password = $("#txtPassword").val();
+        var foto = $("#hdnFotoSubir").val();
+
+        var obj = {"nombre":nombre,"email":email,"password":password,"perfil":perfil,"foto":foto};  
+
+        $.ajax({
+            type:'post',
+            url:pagina,
+            dataType:'html',
+            data:{queMuestro:"6", obj:obj},
+            async:true
+        })
+        .done(function(respuesta){
+            alert(respuesta);
+            if (respuesta) { alert("Usuario modificado");} 
+            MostrarGrilla();    
+        })
+        .fail(function(jqXHR, textStatus, errorThrown){
+            alert(jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+        })
 }
-function EditarUsuario() {//#7 sin case
-		//IMPLEMENTAR...
-}
+
 function EliminarUsuario(obj) {//#7
-		//IMPLEMENTAR...
+		var pagina = "./administracion.php";
+        var id = obj;
+        
+        $.ajax({
+            type:'post',
+            url:pagina,
+            dataType:'text',
+            data:{queMuestro:"7",id:id},
+            async:true
+        })
+        .done(function(respuesta){
+            alert(respuesta); 
+               
+        })
+        .fail(function(jqXHR, textStatus, errorThrown){
+            alert(jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
+        })
 }
 function ModificarUsuario() {//#8
         

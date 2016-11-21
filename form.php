@@ -25,28 +25,30 @@
             $btn ="ModificarUsuario()";
             $btnNombre = "Modificar";
             break;
-        case "2": //EELIMINAR
-            $user = Usuario::TraerUnUsuarioPorId($id);
+        case "2": //ELIMINAR
+            $users = Usuario::TraerUnUsuarioPorId($id);
             foreach ($users as $value) {
                 $user = $value;
             }
+            $_GET['imatmp'] = $user->foto;
             $btn ="EliminarUsuario(".$user->id.")";
             $btnNombre = "Eliminar";
             break;
         case "3": //EDITAR
             $user = $_SESSION['uls'];
+            $_GET['imatmp'] = $user->foto;
             $btn ="EditarUsuario()";
             $btnNombre = "Editar";
             break;
         case "4": //AGREGAR
             $user = new Usuario();
-
             $user->nombre = " ";
             $user->email = " ";
             $user->perfil = " ";
             $_GET['imatmp'] = "pordefecto.jpg";
-            $btn ="EditarUsuario()";
-            $btnNombre = "Editar";
+            $user->foto = $_GET['imatmp'];
+            $btn ="AgregarUsuario()";
+            $btnNombre = "Agregar";
             break;
     }
 ?>
